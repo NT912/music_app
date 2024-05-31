@@ -7,7 +7,7 @@ const path = require("path");
 // Thiết lập multer để tải lên file âm nhạc vào thư mục 'uploads'
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, "uploads/"));
+    cb(null, path.join(__dirname, "../uploads/"));
   },
   filename: function (req, file, cb) {
     cb(
@@ -18,8 +18,6 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
-
-router.get("/fetch-tracks", trackController.fetchTracks);
 
 router.post("/save-track", trackController.saveTrack);
 
