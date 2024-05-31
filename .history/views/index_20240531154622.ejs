@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Player</title>
+  <link rel="stylesheet" href="/css/index.css">
+</head>
+
+<body>
+  <header>
+    <nav>
+      <a href="/"><img src="public/image/logo.png" alt="Logo" class="logo"></a>
+      <ul>
+        <li><a href="/">Trang Chủ</a></li>
+      </ul>
+      <% if (user) { %>
+        <div class="auth-buttons">
+          <span>Xin chào, <%= user.username %></span>
+          <a href="/logout" class="btn">Đăng Xuất</a>
+        </div>
+        <% } else { %>
+          <div class="auth-buttons">
+            <a href="/login" class="btn">Đăng Nhập</a>
+            <a href="/register" class="btn">Đăng Ký</a>
+          </div>
+          <% } %>
+    </nav>
+  </header>
+  <main>
+    <div class="player">
+      <div class="track-info">
+        <h2>Now Playing</h2>
+        <p id="track-info">Track Name - Artist</p>
+      </div>
+      <div class="controls">
+        <button class="btn" onclick="playTrack()">Play</button>
+        <button class="btn" onclick="pauseTrack()">Pause</button>
+        <button class="btn" onclick="nextTrack()">Next</button>
+        <button class="btn" onclick="previousTrack()">Previous</button>
+      </div>
+    </div>
+    <div id="track-list"></div>
+  </main>
+  <footer>
+    <p>&copy; 2024 Music Player. All rights reserved.</p>
+  </footer>
+  <script src="/js/main.js"></script>
+</body>
+
+</html>

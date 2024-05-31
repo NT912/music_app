@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Player</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="/css/index.css">
+</head>
+
+<body>
+  <header>
+    <nav>
+      <a href="/"><img src="public/image/logo.png" alt="Logo" class="logo"></a>
+      <ul>
+        <li><a href="/">Trang Chủ</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <div id="player">
+      <div class="track-info">
+        <h2>Now Playing</h2>
+        <p id="track-info">Track Name - Artist</p>
+      </div>
+    </div>
+    <div id="track-list"></div>
+  </main>
+  <footer>
+    <div class="controls">
+      <i class="fas fa-random" onclick="toggleRandom()"></i>
+      <i class="fas fa-step-backward" onclick="previousTrack()"></i>
+      <i class="fas fa-play" id="play-button" onclick="togglePlay()"></i>
+      <i class="fas fa-step-forward" onclick="nextTrack()"></i>
+      <i class="fas fa-redo" onclick="toggleRepeat()"></i>
+    </div>
+  </footer>
+  <script src="/js/main.js"></script>
+</body>
+
+</html>

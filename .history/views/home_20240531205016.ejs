@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Player</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="/css/home.css">
+</head>
+
+<body>
+  <header>
+    <nav>
+      <a href="/home">
+        <div class="container-audio">
+          <div class="colum1">
+            <div class="row"></div>
+          </div>
+          <div class="colum1">
+            <div class="row"></div>
+          </div>
+          <div class="colum1">
+            <div class="row"></div>
+          </div>
+          <div class="colum1">
+            <div class="row"></div>
+          </div>
+          <div class="colum1">
+            <div class="row"></div>
+          </div>
+          <div class="colum1">
+            <div class="row"></div>
+          </div>
+          <div class="colum1">
+            <div class="row"></div>
+          </div>
+        </div>
+        </div>
+      </a>
+      <div class="auth-buttons">
+        <% if (user) { %>
+          <span>Xin chào, <%= user.username %></span>
+          <a href="/logout" class="btn">Đăng Xuất</a>
+          <% } else { %>
+            <a href="/login" class="btn">Đăng Nhập</a>
+            <a href="/register" class="btn">Đăng Ký</a>
+            <% } %>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <div id="track-list"></div>
+  </main>
+  <footer>
+    <div class="track-status">
+      <p class="current-track">Bài hát đang phát: <span id="current-track-info">Track Name - Artist</span></p>
+    </div>
+    <div class="controls-wrapper">
+      <div class="controls">
+        <i class="fas fa-random" onclick="toggleRandom()"></i>
+        <i class="fas fa-step-backward" onclick="previousTrack()"></i>
+        <i class="fas fa-play" id="play-button" onclick="togglePlay()"></i>
+        <i class="fas fa-step-forward" onclick="nextTrack()"></i>
+        <i class="fas fa-redo" onclick="toggleRepeat()"></i>
+      </div>
+    </div>
+    <div class="list-track-wrapper"></div>
+    <div class="list-track">
+      <i class="fas fa-list" onclick="showPlaylist()"></i>
+    </div>
+  </footer>
+  <script src="/js/main.js"></script>
+</body>
+
+</html>

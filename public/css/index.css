@@ -1,0 +1,79 @@
+/* Đặt lại các kiểu mặc định cho toàn bộ trang */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Kiểu cho body */
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f0f2f5;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+/* Kiểu cho header và navigation */
+header {
+  width: 100%;
+  background-color: #4a90e2;
+  padding: 20px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 20px;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* Kiểu cho các nút */
+.btn {
+  background-color: #fff;
+  color: #4a90e2;
+  border: 2px solid #4a90e2;
+  border-radius: 25px;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #4a90e2;
+  color: #fff;
+  border-color: #fff;
+}
+
+/* Responsive design: Điều chỉnh layout cho màn hình nhỏ hơn */
+@media (max-width: 600px) {
+  header {
+    padding: 15px 0;
+  }
+
+  nav {
+    justify-content: center;
+    padding: 0 10px;
+  }
+
+  .auth-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .btn {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+}
