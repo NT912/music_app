@@ -1,3 +1,5 @@
+const Track = require("../models/track");
+
 exports.index = (req, res) => {
   res.render("index");
 };
@@ -6,7 +8,12 @@ exports.home = (req, res) => {
   if (!req.session.user) {
     return res.redirect("/login");
   }
-  res.render("home", { user: req.session.user });
+  Track.getAll((err, tracks) => {
+    if (err) {
+      return res.status(500).send("Lỗi máy chủ");
+    }
+    res.render("home", { tracks: tracks, user: req.session.user });
+  });
 };
 
 exports.loginPage = (req, res) => {

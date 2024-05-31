@@ -27,15 +27,6 @@ exports.addTrack = (req, res) => {
   });
 };
 
-exports.fetchTracks = (req, res) => {
-  Track.getAll((err, tracks) => {
-    if (err) {
-      return res.status(500).send("Lỗi máy chủ");
-    }
-    res.render("home", { tracks: tracks });
-  });
-};
-
 exports.saveTrack = (req, res) => {
   const { trackId } = req.body;
   const userId = req.session.user.id;
