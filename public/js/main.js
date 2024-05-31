@@ -73,7 +73,7 @@ document.getElementById("add-song-form").onsubmit = function (event) {
   var formData = new FormData(this);
 
   // Gửi yêu cầu AJAX
-  fetch("/add-song", {
+  fetch("/tracks/add-song", {
     method: "POST",
     body: formData,
   })
