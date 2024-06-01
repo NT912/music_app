@@ -63,13 +63,10 @@ function playAudio(trackName, singer, trackPath) {
 function updatePlaylistUI() {
   let playlistElement = document.getElementById("playlist");
   playlistElement.innerHTML = "";
-  playlist.forEach((track, index) => {
+  playlist.forEach((track) => {
     let li = document.createElement("li");
-    li.textContent = `${index + 1}. ${track.trackName} - ${track.singer}`;
+    li.innerText = `${track.trackName} - ${track.singer}`;
     playlistElement.appendChild(li);
-    li.addEventListener("click", function () {
-      playAudio(track.trackName, track.singer, track.trackPath);
-    });
   });
 }
 
@@ -100,13 +97,16 @@ function toggleOptionsMenu(icon) {
   }
 }
 
-// Thêm sự kiện click cho mỗi thẻ <li> trong sidebar
-document.querySelectorAll(".playlist li").forEach(function (trackLi, index) {
-  trackLi.addEventListener("click", function () {
+// Thêm sự kiện click cho mỗi phần tử trong danh sách bài hát
+document.querySelectorAll(".track-card").forEach(function (trackCard) {
+  trackCard.addEventListener("click", function () {
     // Lấy thông tin của bài hát từ phần tử được bấm
-    let trackName = playlist[index].trackName;
-    let singer = playlist[index].singer;
-    let trackPath = playlist[index].trackPath;
+    let trackName = this.querySelector("h2").innerText.trim();
+    let singer = this.querySelector("p").innerText.trim();
+    let trackPath = this.querySelector(".options-icon")
+      .getAttribute("onclick")
+      .match(/'(.*?)'/g)[2]
+      .replace(/'/g, "");
 
     // Phát bài hát
     playAudio(trackName, singer, trackPath);

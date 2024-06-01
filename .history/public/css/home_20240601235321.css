@@ -420,40 +420,40 @@ footer {
   color: black;
 }
 
-/* Kiểu cho thanh sidebar */
+/* Playlist sidebar */
 .sidebar {
-  border-radius: 10px;
+  height: 100%;
+  width: 0;
   position: fixed;
-  top: 90px; /* cao độ của header */
-  bottom: 60px; /* cao độ của footer */
-  right: -300px; /* ẩn thanh sidebar khi ban đầu */
-  width: 300px;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  padding: 20px;
-  z-index: 1000;
-  transition: right 0.3s; /* hiệu ứng khi mở và đóng thanh sidebar */
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  color: white;
 }
 
-.sidebar.open {
-  right: 0; /* hiển thị thanh sidebar */
+.sidebar h2 {
+  padding: 10px 15px;
 }
 
-.playlist li {
-  font-size: 16px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-weight: normal;
-  transition: font-size 0.3s, font-weight 0.3s, transform 0.3s;
+.sidebar ul {
+  list-style: none;
+  padding: 0;
 }
 
-.playlist li:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  font-weight: bold;
+.sidebar ul li {
+  padding: 10px 15px;
+  border-bottom: 1px solid #ddd;
 }
 
-/* CSS cho dấu 3 chấm */
+.sidebar ul li:first-child {
+  border-top: 1px solid #ddd;
+}
+
+/* Options icon */
 .options-icon {
   float: right;
   cursor: pointer;
@@ -467,10 +467,6 @@ footer {
   border: 1px solid #ddd;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   z-index: 1;
-}
-
-.options-menu.open {
-  display: block;
 }
 
 .options-menu a {

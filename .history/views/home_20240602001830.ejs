@@ -63,14 +63,8 @@
           <p>
             <%= track.singer %>
           </p>
-          <i class="fas fa-play-circle play-icon"
+          <i class="fas fa-play play-icon"
             onclick="playAudio('<%= track.track_name %>', '<%= track.singer %>', '<%= track.tracks_path %>')"></i>
-          <i class="fas fa-ellipsis-v options-icon" onclick="toggleOptionsMenu(this)"></i>
-          <div class="options-menu">
-            <a href="#"
-              onclick="addToPlaylist('<%= track.track_name %>', '<%= track.singer %>', '<%= track.tracks_path %>')">Thêm
-              vào danh sách phát</a>
-          </div>
         </div>
         <% }); %>
     </div>
@@ -86,20 +80,30 @@
       <i class="fas fa-step-forward" onclick="nextTrack()"></i>
       <i class="fas fa-redo" onclick="toggleRepeat()"></i>
     </div>
-    <div class="list-track">
-      <i class="fas fa-list" onclick="showPlaylist()"></i>
+    <div class="list-track" onclick="showHidePlaylist()">
+      <i class="fas fa-list"></i>
     </div>
   </footer>
 
-  <!-- Audio player (hidden) -->
-  <audio id="audio-player" style="display: none;"></audio>
-
-  <div id="playlist-modal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <ul id="playlist"></ul>
+  <!-- Thêm container cho danh sách bài hát -->
+  <div id="playlist-container" class="playlist-container">
+    <div class="playlist-header">
+      <span class="close-playlist" onclick="showHidePlaylist()">Đóng</span> <!-- Thêm nút để đóng danh sách -->
+    </div>
+    <div class="playlist-content">
+      <!-- Hiển thị danh sách bài hát -->
+      <ul>
+        <% tracks.forEach(function(track) { %>
+          <li>
+            <%= track.track_name %> - <%= track.singer %>
+          </li>
+          <% }); %>
+      </ul>
     </div>
   </div>
+
+  <!-- Audio player (hidden) -->
+  <audio id="audio-player" style="display: none;"></audio>
 
   <!-- Popup modal -->
   <div id="add-song-modal" class="modal">

@@ -60,16 +60,27 @@ function playAudio(trackName, singer, trackPath) {
   playButton.className = "fas fa-pause";
 }
 
+// Đóng menu 3 chấm khi click ra ngoài
+window.onclick = function (event) {
+  let menus = document.querySelectorAll(".options-menu");
+  menus.forEach((menu) => {
+    if (
+      menu.style.display === "block" &&
+      !menu.contains(event.target) &&
+      !event.target.classList.contains("options-icon")
+    ) {
+      menu.style.display = "none";
+    }
+  });
+};
+
 function updatePlaylistUI() {
   let playlistElement = document.getElementById("playlist");
   playlistElement.innerHTML = "";
-  playlist.forEach((track, index) => {
+  playlist.forEach((track) => {
     let li = document.createElement("li");
-    li.textContent = `${index + 1}. ${track.trackName} - ${track.singer}`;
+    li.innerText = `${track.trackName} - ${track.singer}`;
     playlistElement.appendChild(li);
-    li.addEventListener("click", function () {
-      playAudio(track.trackName, track.singer, track.trackPath);
-    });
   });
 }
 
@@ -87,46 +98,11 @@ function addToPlaylist(trackName, singer, trackPath) {
   }
 }
 
-// Sự kiện click trên icon menu tùy chọn
-function toggleOptionsMenu(icon) {
-  // Tìm phần tử menu tùy chọn tương ứng với icon
-  var optionsMenu = icon.parentElement.querySelector(".options-menu");
-
-  // Kiểm tra nếu menu tùy chọn đang hiển thị, thì ẩn đi; ngược lại, hiển thị
-  if (optionsMenu.classList.contains("open")) {
-    optionsMenu.classList.remove("open");
-  } else {
-    optionsMenu.classList.add("open");
-  }
+function toggleOptionsMenu(element) {
+  let optionsMenu = element.nextElementSibling;
+  optionsMenu.style.display =
+    optionsMenu.style.display === "block" ? "none" : "block";
 }
-
-// Thêm sự kiện click cho mỗi thẻ <li> trong sidebar
-document.querySelectorAll(".playlist li").forEach(function (trackLi, index) {
-  trackLi.addEventListener("click", function () {
-    // Lấy thông tin của bài hát từ phần tử được bấm
-    let trackName = playlist[index].trackName;
-    let singer = playlist[index].singer;
-    let trackPath = playlist[index].trackPath;
-
-    // Phát bài hát
-    playAudio(trackName, singer, trackPath);
-  });
-});
-
-// Sự kiện click trên toàn bộ document
-document.addEventListener("click", function (event) {
-  // Nếu click không nằm trong phần menu tùy chọn hoặc icon menu tùy chọn
-  if (
-    !event.target.classList.contains("options-icon") &&
-    !event.target.closest(".options-menu")
-  ) {
-    // Ẩn tất cả các menu tùy chọn
-    var optionsMenus = document.querySelectorAll(".options-menu");
-    optionsMenus.forEach(function (menu) {
-      menu.classList.remove("open");
-    });
-  }
-});
 
 // Thêm bài hát
 // Lấy modal và nút đóng
@@ -241,33 +217,5 @@ document.addEventListener("click", function (event) {
   ) {
     // Ẩn thanh sidebar đi
     sidebar.classList.remove("open");
-  }
-});
-
-// Sự kiện click trên icon menu tùy chọn
-function toggleOptionsMenu(icon) {
-  // Tìm phần tử menu tùy chọn tương ứng với icon
-  var optionsMenu = icon.parentElement.querySelector(".options-menu");
-
-  // Kiểm tra nếu menu tùy chọn đang hiển thị, thì ẩn đi; ngược lại, hiển thị
-  if (optionsMenu.classList.contains("open")) {
-    optionsMenu.classList.remove("open");
-  } else {
-    optionsMenu.classList.add("open");
-  }
-}
-
-// Sự kiện click trên toàn bộ document
-document.addEventListener("click", function (event) {
-  // Nếu click không nằm trong phần menu tùy chọn hoặc icon menu tùy chọn
-  if (
-    !event.target.classList.contains("options-icon") &&
-    !event.target.closest(".options-menu")
-  ) {
-    // Ẩn tất cả các menu tùy chọn
-    var optionsMenus = document.querySelectorAll(".options-menu");
-    optionsMenus.forEach(function (menu) {
-      menu.classList.remove("open");
-    });
   }
 });

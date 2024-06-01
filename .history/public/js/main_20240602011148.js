@@ -63,13 +63,10 @@ function playAudio(trackName, singer, trackPath) {
 function updatePlaylistUI() {
   let playlistElement = document.getElementById("playlist");
   playlistElement.innerHTML = "";
-  playlist.forEach((track, index) => {
+  playlist.forEach((track) => {
     let li = document.createElement("li");
-    li.textContent = `${index + 1}. ${track.trackName} - ${track.singer}`;
+    li.innerText = `${track.trackName} - ${track.singer}`;
     playlistElement.appendChild(li);
-    li.addEventListener("click", function () {
-      playAudio(track.trackName, track.singer, track.trackPath);
-    });
   });
 }
 
@@ -100,21 +97,50 @@ function toggleOptionsMenu(icon) {
   }
 }
 
-// Thêm sự kiện click cho mỗi thẻ <li> trong sidebar
-document.querySelectorAll(".playlist li").forEach(function (trackLi, index) {
-  trackLi.addEventListener("click", function () {
-    // Lấy thông tin của bài hát từ phần tử được bấm
-    let trackName = playlist[index].trackName;
-    let singer = playlist[index].singer;
-    let trackPath = playlist[index].trackPath;
+// Thêm sự kiện click cho mỗi phần tử trong danh sách bài hát
+// Sự kiện click vào mỗi phần tử trong danh sách bài hát ở thanh sidebar
+playlistUl.addEventListener("click", function (event) {
+  // Kiểm tra xem phần tử được click có phải là một li trong danh sách không
+  if (event.target.tagName === "LI") {
+    // Lấy thông tin của bài hát từ nội dung của phần tử li
+    var trackInfo = event.target.textContent;
+    var trackName = trackInfo.split(" - ")[0];
+    var singer = trackInfo.split(" - ")[1];
+
+    // Tìm đường dẫn của bài hát trong playlist dựa trên tên và ca sĩ
+    var trackPath;
+    for (var i = 0; i < playlist.length; i++) {
+      if (
+        playlist[i].trackName === trackName &&
+        playlist[i].singer === singer
+      ) {
+        trackPath = playlist[i].trackPath;
+        break;
+      }
+    }
 
     // Phát bài hát
     playAudio(trackName, singer, trackPath);
-  });
+  }
 });
 
+// Hàm phát bài hát
+function playAudio(trackName, singer, trackPath) {
+  const audioPlayer = document.getElementById("audio-player");
+  const currentTrackInfo = document.getElementById("current-track-info");
+
+  audioPlayer.src = trackPath;
+  audioPlayer.play();
+  isPlaying = true;
+
+  currentTrackInfo.textContent = `${trackName} - ${singer}`;
+
+  let playButton = document.getElementById("play-button");
+  playButton.className = "fas fa-pause";
+}
+
 // Sự kiện click trên toàn bộ document
-document.addEventListener("click", function (event) {
+document.addEventListener("clicks", function (event) {
   // Nếu click không nằm trong phần menu tùy chọn hoặc icon menu tùy chọn
   if (
     !event.target.classList.contains("options-icon") &&

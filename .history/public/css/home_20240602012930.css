@@ -440,17 +440,15 @@ footer {
 }
 
 .playlist li {
-  font-size: 16px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-weight: normal;
-  transition: font-size 0.3s, font-weight 0.3s, transform 0.3s;
+  font-size: 16px; /* Kích thước font mặc định */
+  font-weight: normal; /* Trọng số font mặc định */
+  transition: font-size 0.3s, font-weight 0.3s, transform 0.3s; /* Hiệu ứng chuyển động */
 }
 
 .playlist li:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  font-weight: bold;
+  transform: scale(1.1); /* Phóng to một chút khi hover */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Đổ bóng */
+  font-weight: bold; /* In đậm font chữ */
 }
 
 /* CSS cho dấu 3 chấm */

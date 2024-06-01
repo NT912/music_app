@@ -64,7 +64,7 @@
             <%= track.singer %>
           </p>
           <i class="fas fa-play-circle play-icon"
-            onclick="playAudio('<%= track.track_name %>', '<%= track.singer %>', '<%= track.tracks_path %>')"></i>
+            onclick="playTrack('<%= track.track_name %>', '<%= track.singer %>', '<%= track.tracks_path %>')"></i>
           <i class="fas fa-ellipsis-v options-icon" onclick="toggleOptionsMenu(this)"></i>
           <div class="options-menu">
             <a href="#"
@@ -93,13 +93,6 @@
 
   <!-- Audio player (hidden) -->
   <audio id="audio-player" style="display: none;"></audio>
-
-  <div id="playlist-modal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <ul id="playlist"></ul>
-    </div>
-  </div>
 
   <!-- Popup modal -->
   <div id="add-song-modal" class="modal">

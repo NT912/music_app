@@ -22,9 +22,9 @@ header {
   padding: 20px 0;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
-#add-song-btn {
-  margin-left: 140px;
+.site-header {
+  position: relative; /* Đảm bảo phần header có vị trí tuyệt đối */
+  z-index: 2; /* Đảm bảo phần header hiển thị trên cùng */
 }
 
 nav {
@@ -212,21 +212,11 @@ nav {
 
 /* Kiểu cho phần chính */
 main {
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
-}
-
-.play-icon {
-  font-size: 24px;
-  cursor: pointer;
-  color: #4a90e2;
-  transition: color 0.3s;
-}
-
-.play-icon:hover {
-  color: #357ae8;
 }
 
 #track-list {
@@ -270,6 +260,25 @@ footer {
   position: fixed;
   bottom: 0;
   left: 0;
+}
+
+/* Hiển thị cột danh sách bài hát đang phát */
+.playlist-sidebar {
+  display: none; /* Ẩn ban đầu */
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: calc(100% - 60px); /* 60px là chiều cao của phần header */
+  background-color: #fff;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+/* Hiển thị cột danh sách bài hát đang phát khi có class show */
+.playlist-sidebar.show {
+  display: block;
+  z-index: 1; /* Đảm bảo nó hiển thị trên phần header */
 }
 
 .track-status {
@@ -418,72 +427,4 @@ footer {
 
 .close:hover {
   color: black;
-}
-
-/* Kiểu cho thanh sidebar */
-.sidebar {
-  border-radius: 10px;
-  position: fixed;
-  top: 90px; /* cao độ của header */
-  bottom: 60px; /* cao độ của footer */
-  right: -300px; /* ẩn thanh sidebar khi ban đầu */
-  width: 300px;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  padding: 20px;
-  z-index: 1000;
-  transition: right 0.3s; /* hiệu ứng khi mở và đóng thanh sidebar */
-}
-
-.sidebar.open {
-  right: 0; /* hiển thị thanh sidebar */
-}
-
-.playlist li {
-  font-size: 16px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-weight: normal;
-  transition: font-size 0.3s, font-weight 0.3s, transform 0.3s;
-}
-
-.playlist li:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  font-weight: bold;
-}
-
-/* CSS cho dấu 3 chấm */
-.options-icon {
-  float: right;
-  cursor: pointer;
-  margin-left: 10px;
-}
-
-.options-menu {
-  display: none;
-  position: absolute;
-  background-color: white;
-  border: 1px solid #ddd;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-}
-
-.options-menu.open {
-  display: block;
-}
-
-.options-menu a {
-  display: block;
-  padding: 10px;
-  text-decoration: none;
-  color: #333;
-}
-
-.options-menu a:hover {
-  background-color: #f0f0f0;
-}
-
-.track-card {
-  position: relative;
 }

@@ -101,17 +101,19 @@ function toggleOptionsMenu(icon) {
 }
 
 // Thêm sự kiện click cho mỗi thẻ <li> trong sidebar
-document.querySelectorAll(".playlist li").forEach(function (trackLi, index) {
-  trackLi.addEventListener("click", function () {
-    // Lấy thông tin của bài hát từ phần tử được bấm
-    let trackName = playlist[index].trackName;
-    let singer = playlist[index].singer;
-    let trackPath = playlist[index].trackPath;
+document
+  .querySelectorAll(".sidebar .playlist li")
+  .forEach(function (trackLi, index) {
+    trackLi.addEventListener("click", function () {
+      // Lấy thông tin của bài hát từ phần tử được bấm
+      let trackName = playlist[index].trackName;
+      let singer = playlist[index].singer;
+      let trackPath = playlist[index].trackPath;
 
-    // Phát bài hát
-    playAudio(trackName, singer, trackPath);
+      // Phát bài hát
+      playAudio(trackName, singer, trackPath);
+    });
   });
-});
 
 // Sự kiện click trên toàn bộ document
 document.addEventListener("click", function (event) {

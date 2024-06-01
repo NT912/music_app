@@ -101,17 +101,34 @@ function toggleOptionsMenu(icon) {
 }
 
 // Thêm sự kiện click cho mỗi thẻ <li> trong sidebar
-document.querySelectorAll(".playlist li").forEach(function (trackLi, index) {
-  trackLi.addEventListener("click", function () {
-    // Lấy thông tin của bài hát từ phần tử được bấm
-    let trackName = playlist[index].trackName;
-    let singer = playlist[index].singer;
-    let trackPath = playlist[index].trackPath;
+document
+  .querySelectorAll(".sidebar .playlist li")
+  .forEach(function (trackLi, index) {
+    trackLi.addEventListener("click", function () {
+      // Lấy thông tin của bài hát từ phần tử được bấm
+      let trackName = playlist[index].trackName;
+      let singer = playlist[index].singer;
+      let trackPath = playlist[index].trackPath;
 
-    // Phát bài hát
-    playAudio(trackName, singer, trackPath);
+      // Phát bài hát
+      playAudio(trackName, singer, trackPath);
+    });
   });
-});
+
+// Hàm phát bài hát
+function playAudio(trackName, singer, trackPath) {
+  const audioPlayer = document.getElementById("audio-player");
+  const currentTrackInfo = document.getElementById("current-track-info");
+
+  audioPlayer.src = trackPath;
+  audioPlayer.play();
+  isPlaying = true;
+
+  currentTrackInfo.textContent = `${trackName} - ${singer}`;
+
+  let playButton = document.getElementById("play-button");
+  playButton.className = "fas fa-pause";
+}
 
 // Sự kiện click trên toàn bộ document
 document.addEventListener("click", function (event) {

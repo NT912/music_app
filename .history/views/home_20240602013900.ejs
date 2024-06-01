@@ -64,8 +64,8 @@
             <%= track.singer %>
           </p>
           <i class="fas fa-play-circle play-icon"
-            onclick="playAudio('<%= track.track_name %>', '<%= track.singer %>', '<%= track.tracks_path %>')"></i>
-          <i class="fas fa-ellipsis-v options-icon" onclick="toggleOptionsMenu(this)"></i>
+            onclick="playTrack('<%= track.track_name %>', '<%= track.singer %>', '<%= track.tracks_path %>')"></i>
+          <i class="fas fa-ellipsis-v options-icon" onclick="togglePlay(this)"></i>
           <div class="options-menu">
             <a href="#"
               onclick="addToPlaylist('<%= track.track_name %>', '<%= track.singer %>', '<%= track.tracks_path %>')">Thêm

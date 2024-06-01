@@ -442,8 +442,7 @@ footer {
 .playlist li {
   font-size: 16px;
   margin-top: 10px;
-  margin-bottom: 10px;
-  font-weight: normal;
+  font-weight: 20px;
   transition: font-size 0.3s, font-weight 0.3s, transform 0.3s;
 }
 

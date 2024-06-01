@@ -422,7 +422,6 @@ footer {
 
 /* Kiểu cho thanh sidebar */
 .sidebar {
-  border-radius: 10px;
   position: fixed;
   top: 90px; /* cao độ của header */
   bottom: 60px; /* cao độ của footer */
@@ -437,20 +436,6 @@ footer {
 
 .sidebar.open {
   right: 0; /* hiển thị thanh sidebar */
-}
-
-.playlist li {
-  font-size: 16px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-weight: normal;
-  transition: font-size 0.3s, font-weight 0.3s, transform 0.3s;
-}
-
-.playlist li:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  font-weight: bold;
 }
 
 /* CSS cho dấu 3 chấm */

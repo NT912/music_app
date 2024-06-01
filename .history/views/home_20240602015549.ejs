@@ -97,7 +97,27 @@
   <div id="playlist-modal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
-      <ul id="playlist"></ul>
+      <ul id="playlist">
+        <li data-audio='<%= track.tracks_path %'>Song 1</li>
+      </ul>
+      <script>
+        // Lấy danh sách phát
+        var playlist = document.getElementById("playlist");
+        var songs = playlist.getElementsByTagName("li");
+
+        // Gắn sự kiện click cho mỗi thẻ <li> trong danh sách phát
+        for (var i = 0; i < songs.length; i++) {
+          var playIcon = document.createElement("i");
+          playIcon.className = "fas fa-play";
+          songs[i].prepend(playIcon);
+
+          // Gắn sự kiện click cho icon play trong từng thẻ <li>
+          songs[i].addEventListener("click", function () {
+            var audioUrl = this.getAttribute("data-audio");
+            playAudio(audioUrl);
+          });
+        }
+      </script>
     </div>
   </div>
 

@@ -63,18 +63,15 @@
           <p>
             <%= track.singer %>
           </p>
-          <i class="fas fa-play-circle play-icon"
-            onclick="playAudio('<%= track.track_name %>', '<%= track.singer %>', '<%= track.tracks_path %>')"></i>
-          <i class="fas fa-ellipsis-v options-icon" onclick="toggleOptionsMenu(this)"></i>
-          <div class="options-menu">
-            <a href="#"
-              onclick="addToPlaylist('<%= track.track_name %>', '<%= track.singer %>', '<%= track.tracks_path %>')">Thêm
-              vào danh sách phát</a>
-          </div>
+          <audio controls>
+            <source src="<%= track.tracks_path %>" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
         </div>
         <% }); %>
     </div>
   </main>
+
   <footer>
     <div class="track-status">
       <p class="current-track">Bài hát đang phát: <span id="current-track-info">Track Name - Artist</span></p>
@@ -90,16 +87,6 @@
       <i class="fas fa-list" onclick="showPlaylist()"></i>
     </div>
   </footer>
-
-  <!-- Audio player (hidden) -->
-  <audio id="audio-player" style="display: none;"></audio>
-
-  <div id="playlist-modal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <ul id="playlist"></ul>
-    </div>
-  </div>
 
   <!-- Popup modal -->
   <div id="add-song-modal" class="modal">
