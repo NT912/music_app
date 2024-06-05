@@ -273,23 +273,41 @@ footer {
 }
 
 .track-status {
-  font-size: 14px;
+  font-size: 18px;
+  font-style: oblique;
 }
 
-.controls {
+.control-range .range {
+  margin-left: -200px;
+  margin-bottom: 10px;
+}
+
+.control-range .controls {
   display: flex;
   justify-content: center;
   gap: 15px;
-  margin-left: -210px;
+  margin-left: -200px;
 }
 
-.controls i {
+.control-range .controls i {
   font-size: 20px;
   cursor: pointer;
 }
 
-.controls i:hover {
+.control-range .controls i:hover {
   color: #ddd;
+}
+
+.control-range .controls i.active {
+  color: #001d4c;
+}
+
+.control-range .controls i.repeat-one::after {
+  content: "1";
+  font-size: 0.6em;
+  vertical-align: super;
+  margin-left: 2px;
+  color: #001d4c;
 }
 
 .list-track {
@@ -336,7 +354,7 @@ footer {
     text-align: center;
   }
 
-  .controls {
+  .control-range .controls {
     justify-content: center;
     gap: 10px;
   }
@@ -424,15 +442,15 @@ footer {
 .sidebar {
   border-radius: 10px;
   position: fixed;
-  top: 90px; /* cao độ của header */
-  bottom: 60px; /* cao độ của footer */
-  right: -300px; /* ẩn thanh sidebar khi ban đầu */
+  top: 90px;
+  bottom: 70px;
+  right: -300px;
   width: 300px;
   background-color: rgba(0, 0, 0, 0.8);
   color: #fff;
   padding: 20px;
   z-index: 1000;
-  transition: right 0.3s; /* hiệu ứng khi mở và đóng thanh sidebar */
+  transition: right 0.3s;
 }
 
 .sidebar.open {

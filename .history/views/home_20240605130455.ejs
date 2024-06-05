@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Player</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="/css/home.css">
+</head>
+
+<body>
+  <header>
+    <nav>
+      <a href="/home">
+        <div class="container-audio">
+          <div class="colum1">
+            <div class="row"></div>
+          </div>
+          <div class="colum1">
+            <div class="row"></div>
+          </div>
+          <div class="colum1">
+            <div class="row"></div>
+          </div>
+          <div class="colum1">
+            <div class="row"></div>
+          </div>
+          <div class="colum1">
+            <div class="row"></div>
+          </div>
+          <div class="colum1">
+            <div class="row"></div>
+          </div>
+          <div class="colum1">
+            <div class="row"></div>
+          </div>
+        </div>
+      </a>
+      <a href="#" id="add-song-btn" class="btn">Thêm Bài Hát</a>
+      <div class="auth-buttons">
+        <% if (user) { %>
+          <span>Xin chào, <%= user.username %></span>
+          <a href="/logout" class="btn">Đăng Xuất</a>
+          <% } else { %>
+            <a href="/login" class="btn">Đăng Nhập</a>
+            <a href="/register" class="btn">Đăng Ký</a>
+            <% } %>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <div id="track-list">
+      <% tracks.forEach(function(track) { %>
+        <div class="track-card">
+          <h2>
+            <%= track.track_name %>
+          </h2>
+          <p>
+            <%= track.singer %>
+          </p>
+          <i class="fas fa-play-circle play-icon"
+            onclick="addToPlaylistAndPlay('<%= track.track_name %>', '<%= track.singer %>', '<%= track.tracks_path %>')"></i>
+          <i class="fas fa-ellipsis-v options-icon" onclick="toggleOptionsMenu(this)"></i>
+          <div class="options-menu">
+            <a href="#"
+              onclick="addToPlaylist('<%= track.track_name %>', '<%= track.singer %>', '<%= track.tracks_path %>')">Thêm
+              vào danh sách phát</a>
+          </div>
+        </div>
+        <% }); %>
+    </div>
+  </main>
+  <footer>
+    <div class="track-status">
+      <p class="current-track">Bài hát đang phát: <span id="current-track-info">Track Name - Artist</span></p>
+    </div>
+    <div class="range">
+      <input type="range" id="seek-bar" value="0">
+
+    </div>
+    <div class="controls">
+      <i class="fas fa-random" onclick="toggleRandom()"></i>
+      <i class="fas fa-step-backward" onclick="previousTrack()"></i>
+      <i class="fas fa-play" id="play-button" onclick="togglePlay()"></i>
+      <i class="fas fa-step-forward" onclick="nextTrack()"></i>
+      <i class="fas fa-redo" onclick="toggleRepeat()"></i>
+    </div>
+    <audio id="audio-player" src=""></audio>
+    <div class="list-track">
+      <i class="fas fa-list" onclick="togglePlaylist()"></i>
+    </div>
+  </footer>
+
+  <div id="playlist-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Danh Sách Phát</h2>
+      <ul id="playlist"></ul>
+    </div>
+  </div>
+
+  <div id="add-song-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Thêm Bài Hát Mới</h2>
+      <form id="add-song-form" enctype="multipart/form-data">
+        <label for="track-name">Tên Bài Hát:</label>
+        <input type="text" id="track-name" name="track_name" required>
+        <label for="singer">Ca Sĩ:</label>
+        <input type="text" id="singer" name="singer" required>
+        <label for="track-file">Tập Tin Bài Hát:</label>
+        <input type="file" id="track-file" name="track_file" accept="audio/*" required>
+        <input type="hidden" id="track-path" name="tracks_path">
+        <button type="submit">Thêm</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/main.js"></script>
+</body>
+
+</html>
