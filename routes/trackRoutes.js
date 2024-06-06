@@ -19,11 +19,9 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.post("/save-track", trackController.saveTrack);
-
 router.post(
   "/add-song",
-  upload.single("track-file"), // Sử dụng middleware upload.single() để xử lý tải lên file
+  upload.single("track_file"), // Sử dụng middleware upload.single() để xử lý tải lên file
   (req, res, next) => {
     // Tiếp tục sang controller để xử lý thông tin bài hát
     next();

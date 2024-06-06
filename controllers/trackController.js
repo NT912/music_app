@@ -1,9 +1,8 @@
 const Track = require("../models/track");
-const SavedTrack = require("../models/SavedTrack");
 
 exports.addTrack = (req, res) => {
   // Lưu thông tin bài hát vào cơ sở dữ liệu
-  const trackName = req.body["track-name"];
+  const trackName = req.body["track_name"];
   const singer = req.body.singer;
   const trackPath = req.file.path;
 
@@ -24,28 +23,5 @@ exports.addTrack = (req, res) => {
       // Phản hồi thành công với client
       res.status(200).send("Bài hát đã được thêm thành công");
     }
-  });
-};
-
-exports.saveTrack = (req, res) => {
-  const { trackId } = req.body;
-  const userId = req.session.user.id;
-
-  // Kiểm tra xem bài hát đã được lưu trước đó chưa
-  SavedTrack.findByTrackAndUser(trackId, userId, (err, savedTrack) => {
-    if (err) {
-      return res.status(500).send("Lỗi máy chủ");
-    }
-    if (savedTrack) {
-      return res.status(400).send("Bài hát đã được lưu");
-    }
-
-    // Lưu bài hát vào danh sách của người dùng
-    SavedTrack.add(trackId, userId, (err, result) => {
-      if (err) {
-        return res.status(500).send("Lỗi máy chủ");
-      }
-      res.status(200).send("Bài hát đã được lưu");
-    });
   });
 };

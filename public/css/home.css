@@ -210,6 +210,45 @@ nav {
   border-color: #fff;
 }
 
+/* Kiểu cho ô nhập liệu tìm kiếm */
+nav form input[type="text"] {
+  padding: 10px;
+  border: 2px solid #4a90e2;
+  border-radius: 20px;
+  outline: none;
+  font-size: 16px;
+  width: 300px;
+}
+
+/* Kiểu cho nút tìm kiếm */
+nav form button {
+  background-color: #4a90e2;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+nav form button:hover {
+  background-color: #357ae8;
+}
+
+/* Kiểu cho placeholder của ô nhập liệu */
+nav form input[type="text"]::placeholder {
+  color: #999;
+}
+
+/* Canh chỉnh các phần tử trong navigation */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 /* Kiểu cho phần chính */
 main {
   display: flex;
